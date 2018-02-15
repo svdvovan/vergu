@@ -23,23 +23,18 @@ public class legins {
             if (Page == 2) {
                 Path = "https://vergo.su/zhenschiny/losiny-women/?page=3";
             }
-//            if (Page==3){
-//                Path = "https://bfide.ru/catalog/losiny/?PAGEN_1=4";
-//            }
-//            if (Page==4){
-//                Path = "https://bfide.ru/catalog/losiny/?PAGEN_1=5";
-//            }
 
             Document doc1 = Jsoup.connect(Path).get();
 //            Elements lHref = doc1.select("a.d_block");
 //            Elements links1 = doc1.getElementsByClass("product_name got_bold");
-            Elements links1 = doc1.getElementsByClass("caption");
+            Elements links1 = doc1.getElementsByClass("caption").select("h4");
+            Elements links2 = doc1.getElementsByClass("price");
             // Elements prices = doc1.getElementsByClass("current_price got_bold pink");
             Elements prices = doc1.getElementsByClass("price");
 
             //   Elements Categorys = doc1.getElementsByClass("title1 got_light mb30");
 //            Elements Categorys = doc1.getElementsByClass("col-sm-9");
-            Elements Categorys = doc1.select("div.content");
+            //Elements Categorys = doc1.select("div.content");
             // будем из карточки брать id    Elements Names = doc1.select("a[data-product]");
 
 
@@ -49,10 +44,15 @@ public class legins {
                 System.out.println();
 //                System.out.print(Categorys.text() + " ; " + Names.get(y).attr("data-product") + " ; " + link1.text() + " ; " + prices.get(y).text() +" ; "+ "полиамид 80%, лайкра 20%" );
 //                String addressUrl = lHref.get(y).attr("abs:href");
-                System.out.print(Categorys + " ; " + " ; " + link1.text() + " ; " + prices.get(y).text());
-//                String addressUrl = lHref.get(y).attr("abs:href");
+
+                System.out.print("Лосины" + " ; "  + link1.text() + " ; " + prices.get(y).text());
                 String addressUrl = links1.get(y).attr("abs:href");
             }
+            y++;
+        }
+        Page++;
+    }
+}
 //
 //                try {
 //
@@ -127,16 +127,16 @@ public class legins {
 //
 //                }
 //
-//                y++;
+//            y++;
 //
-//            }
+            //         }
 //
 //            Page++;
 //
 //        }
 //
 //
+////    }
+//        }
 //    }
-        }
-    }
-}
+//}
