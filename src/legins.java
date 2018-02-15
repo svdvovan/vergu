@@ -46,8 +46,45 @@ public class legins {
 //                System.out.print(Categorys.text() + " ; " + Names.get(y).attr("data-product") + " ; " + link1.text() + " ; " + prices.get(y).text() +" ; "+ "полиамид 80%, лайкра 20%" );
 //                String addressUrl = lHref.get(y).attr("abs:href");
 
-                System.out.print("Лосины" + " ; "  + link1.text() + " ; " + prices.get(y).text() + ";" + lHref.get(y).attr("abs:href"));
-               // String addressUrl = lHref.get(y).attr("abs:href");
+                System.out.print("Лосины" + " ; "  + link1.text() + " ; " + prices.get(y).text()  ); //";" + lHref.get(y).attr("abs:href"));
+               String addressUrl = lHref.get(y).attr("abs:href");
+                Document doc2 = Jsoup.connect(addressUrl).get();
+                Elements razmeres = doc2.select("option");
+ //               System.out.print(razmeres.text());
+
+                    int numRazmeras = 6;
+                    String[] allRazmeras = new String[numRazmeras];
+                     allRazmeras[0] = "--- Выберите ---";
+                    allRazmeras[1] = "XXS";
+                    allRazmeras[2] = "XS";
+                    allRazmeras[3] = "S";
+                    allRazmeras[4] = "M";
+                    allRazmeras[5] = "L";
+                    int allRazmerasIndex = 0;
+
+                    for (Element razmer : razmeres) {
+                        while (allRazmerasIndex < numRazmeras && !allRazmeras[allRazmerasIndex].equals(razmer.text())) {
+                            System.out.print("; " + allRazmeras[allRazmerasIndex] + " ; 0");
+                            ++allRazmerasIndex;
+                        }
+                        if (allRazmerasIndex < numRazmeras) {
+                            ++allRazmerasIndex;
+                        }
+                        System.out.print(" ; " + razmer.text() + " ; " + "10");
+                    }
+                    while (allRazmerasIndex < numRazmeras) {
+                        System.out.print("; " + allRazmeras[allRazmerasIndex] + " ; 0");
+                        ++allRazmerasIndex;
+                    }
+
+                Elements pictures = doc2.getElementsByClass("thumbnail");
+
+                    int z = 0;
+                    for (Element picture : pictures) {
+                        System.out.print(" ; " +  pictures.get(z).attr("href"));
+                        z++;
+
+                    }
                 y++;
             }
 
