@@ -26,11 +26,12 @@ public class legins {
 
             Document doc1 = Jsoup.connect(Path).get();
 //            Elements lHref = doc1.select("a.d_block");
+            Elements lHref = doc1.getElementsByClass("caption").select("a[href]");
 //            Elements links1 = doc1.getElementsByClass("product_name got_bold");
             Elements links1 = doc1.getElementsByClass("caption").select("h4");
             Elements links2 = doc1.getElementsByClass("price");
             // Elements prices = doc1.getElementsByClass("current_price got_bold pink");
-            Elements prices = doc1.getElementsByClass("price");
+  //          Elements prices = doc1.getElementsByClass("price");
 
             //   Elements Categorys = doc1.getElementsByClass("title1 got_light mb30");
 //            Elements Categorys = doc1.getElementsByClass("col-sm-9");
@@ -40,20 +41,25 @@ public class legins {
 
             int y = 0;
             for (Element link1 : links1) {
-
+                Elements prices = doc1.getElementsByClass("price");
                 System.out.println();
 //                System.out.print(Categorys.text() + " ; " + Names.get(y).attr("data-product") + " ; " + link1.text() + " ; " + prices.get(y).text() +" ; "+ "полиамид 80%, лайкра 20%" );
 //                String addressUrl = lHref.get(y).attr("abs:href");
 
-                System.out.print("Лосины" + " ; "  + link1.text() + " ; " + prices.get(y).text());
-                String addressUrl = links1.get(y).attr("abs:href");
+                System.out.print("Лосины" + " ; "  + link1.text() + " ; " + prices.get(y).text() + ";" + lHref.get(y).attr("abs:href"));
+               // String addressUrl = lHref.get(y).attr("abs:href");
+                y++;
             }
-            y++;
+
+
+
+
+            Page++;
         }
-        Page++;
+
     }
 }
-//
+//String addressUrl = links1.get(y).attr("abs:href");
 //                try {
 //
 //                    Document doc2 = Jsoup.connect(addressUrl).get();
