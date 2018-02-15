@@ -76,6 +76,14 @@ public class legins {
                         System.out.print("; " + allRazmeras[allRazmerasIndex] + " ; 0");
                         ++allRazmerasIndex;
                     }
+//                Elements id_product = doc2.select("product_id");
+//                System.out.print(id_product.text()+ " ; ");
+                Elements id_product = doc2.select("input[name = product_id]");
+                String idName = id_product.attr("value");
+                System.out.print(" ; " + idName);
+
+                Elements opisanie = doc2.getElementsByClass("tab-pane active");
+                System.out.print(" ; " + opisanie.text()) ;
 
                 Elements pictures = doc2.getElementsByClass("thumbnail");
 
